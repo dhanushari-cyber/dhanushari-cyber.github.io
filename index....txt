@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dhanushari Portfolio</title>
+
+<style>
+body{
+    background-color:#0f172a;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+    padding-top:100px;
+}
+
+h1{
+    color:#38bdf8;
+    font-size:60px;
+}
+
+h2{
+    color:#f8fafc;
+}
+
+p{
+    font-size:25px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Dhanushari</h1>
+
+<h2>B.E. Cyber Security Student</h2>
+
+<p>Hello! I am learning Cyber Security.</p>
+
+</body>
+</html>
