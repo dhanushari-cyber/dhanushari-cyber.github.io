@@ -1,41 +1,865 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dhanushari Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Dhanushari V - First Year B.E. Cybersecurity Student at JNN Institute of Technology.">
+
+    <meta name="author" content="Dhanushari V">
+
+    <title>Dhanushari V | Cybersecurity Student</title>
+
     <style>
-        body {
-            background-image: url('https://images.unsplash.com/photo-1519791883288-dc78b969d2d1?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-        }
-        h1 {
-            color: #00b4d8;
-        }
-        ul {
-            list-style-type: none;
+        * {
+            margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #05070d;
+            --card: #0b101a;
+            --card2: #101722;
+            --text: #f5f7fa;
+            --muted: #9ca3af;
+            --green: #00ff9c;
+            --border: rgba(0, 255, 156, 0.18);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 7, 13, 0.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 17px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--green);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 70px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(0, 255, 156, 0.13),
+                    transparent 35%
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 16px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--green);
+            background: rgba(0, 255, 156, 0.05);
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 9vw, 85px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--green);
+        }
+
+        .hero h2 {
+            color: var(--muted);
+            font-size: clamp(20px, 4vw, 30px);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: var(--green);
+            color: #03110b;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 156, 0.3);
+        }
+
+        .secondary {
+            border: 1px solid #303846;
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* COMMON */
+
+        section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 100px 25px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 span {
+            color: var(--green);
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #1c2633;
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border);
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+            color: var(--green);
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* TERMINAL */
+
+        .terminal {
+            background: #020408;
+            border: 1px solid #1c2633;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .terminal-top {
+            padding: 12px 18px;
+            border-bottom: 1px solid #1c2633;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .terminal-body {
+            padding: 25px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .terminal-body p {
+            margin: 10px 0;
+            color: #d1d5db;
+        }
+
+        .prompt {
+            color: var(--green);
+        }
+
+        /* EDUCATION */
+
+        .education {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .education-card {
+            position: relative;
+            padding: 35px;
+            background: linear-gradient(
+                135deg,
+                var(--card),
+                var(--card2)
+            );
+            border: 1px solid #1c2633;
+            border-radius: 16px;
+        }
+
+        .education-card .year {
+            color: var(--green);
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .education-card h3 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .education-card h4 {
+            color: #d1d5db;
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 12px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+        }
+
+        /* INTERESTS */
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .interest {
+            background: var(--card);
+            border: 1px solid #1c2633;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .interest:hover {
+            transform: translateY(-6px);
+            border-color: var(--green);
+        }
+
+        .interest-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .interest h3 {
+            margin-bottom: 8px;
+        }
+
+        .interest p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* CURRENTLY LEARNING */
+
+        .learning {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .learning-item {
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid #1c2633;
+            border-radius: 14px;
+        }
+
+        .learning-item h3 {
+            margin-bottom: 8px;
+        }
+
+        .learning-item p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .learning-bar {
+            height: 5px;
+            margin-top: 18px;
+            background: #1c2633;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .learning-bar span {
+            display: block;
+            width: 25%;
+            height: 100%;
+            background: var(--green);
+        }
+
+        /* JOURNEY */
+
+        .journey {
+            text-align: center;
+            padding: 45px 25px;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 255, 156, 0.08),
+                    transparent 60%
+                ),
+                var(--card);
+            border: 1px solid #1c2633;
+            border-radius: 18px;
+        }
+
+        .journey h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .journey p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        /* GITHUB */
+
+        .github {
+            text-align: center;
+        }
+
+        .github-card {
+            padding: 45px 25px;
+            background: var(--card);
+            border: 1px solid #1c2633;
+            border-radius: 18px;
+        }
+
+        .github-card .username {
+            color: var(--green);
+            font-family: monospace;
+            font-size: 22px;
+            margin: 10px 0 20px;
+        }
+
+        .github-card p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 35px 20px;
+            text-align: center;
+            border-top: 1px solid #18202c;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--green);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid,
+            .learning {
+                grid-template-columns: 1fr;
+            }
+
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Dhanushari</h1>
-    <h2>Cyber Security Student & Tech Enthusiast</h2>
-    <p>Hello! I am learning Cyber Security.</p>
 
-    <h3>Areas of Interest</h3>
-    <ul>
-        <li>Ethical Hacking</li>
-        <li>Network Security</li>
-        <li>Web Application Security</li>
-    </ul>
+    <!-- NAVIGATION -->
 
-    <p>Contact: +91 9345220513</p>
+    <nav>
+        <div class="nav-container">
+
+            <div class="logo">Dhanushari.exe</div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#learning">Learning</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="status">
+                ● FIRST YEAR • CYBERSECURITY STUDENT
+            </div>
+
+            <h1>
+                Dhanushari <span>V</span>
+            </h1>
+
+            <h2>
+                B.E. Cybersecurity Student
+            </h2>
+
+            <p>
+                A first-year cybersecurity student at JNN Institute
+                of Technology, interested in learning new technical
+                skills and exploring the world of cybersecurity.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#about" class="btn primary">
+                    Explore My Journey
+                </a>
+
+                <a href="https://github.com/Dhanushari9313"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn secondary">
+                    View GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-heading">
+            <h2>About <span>Me</span></h2>
+            <p>My journey is just getting started.</p>
+        </div>
+
+        <div class="about-grid">
+
+            <div class="card">
+
+                <h3>Who I Am</h3>
+
+                <p>
+                    I'm Dhanushari V, a first-year B.E. Cybersecurity
+                    student at JNN Institute of Technology.
+                </p>
+
+                <br>
+
+                <p>
+                    I'm currently building my foundation in technology
+                    and cybersecurity. I'm interested in learning new
+                    skills, understanding how technology works and
+                    improving myself step by step.
+                </p>
+
+            </div>
+
+            <div class="terminal">
+
+                <div class="terminal-top">
+                    dhanushari@portfolio: ~
+                </div>
+
+                <div class="terminal-body">
+
+                    <p>
+                        <span class="prompt">$ whoami</span>
+                    </p>
+
+                    <p>Dhanushari V</p>
+
+                    <p>
+                        <span class="prompt">$ education</span>
+                    </p>
+
+                    <p>B.E. Cybersecurity</p>
+
+                    <p>
+                        <span class="prompt">$ year</span>
+                    </p>
+
+                    <p>1st Year</p>
+
+                    <p>
+                        <span class="prompt">$ goal</span>
+                    </p>
+
+                    <p>Learn • Build • Improve</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+
+    <section id="education">
+
+        <div class="section-heading">
+
+            <h2>My <span>Education</span></h2>
+
+            <p>
+                The beginning of my technical journey.
+            </p>
+
+        </div>
+
+        <div class="education">
+
+            <div class="education-card">
+
+                <div class="year">
+                    CURRENT • 1ST YEAR
+                </div>
+
+                <h3>JNN Institute of Technology</h3>
+
+                <h4>B.E. Cybersecurity</h4>
+
+                <p>
+                    Currently pursuing my first year of B.E.
+                    in Cybersecurity and developing a strong
+                    foundation for my future technical career.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTERESTS -->
+
+    <section id="interests">
+
+        <div class="section-heading">
+
+            <h2>My <span>Interests</span></h2>
+
+            <p>
+                Areas I want to explore during my journey.
+            </p>
+
+        </div>
+
+        <div class="interest-grid">
+
+            <div class="interest">
+
+                <div class="interest-icon">🛡️</div>
+
+                <h3>Cybersecurity</h3>
+
+                <p>
+                    Learning the fundamentals of protecting
+                    digital systems and information.
+                </p>
+
+            </div>
+
+            <div class="interest">
+
+                <div class="interest-icon">🌐</div>
+
+                <h3>Networking</h3>
+
+                <p>
+                    Interested in understanding networks,
+                    communication and network security.
+                </p>
+
+            </div>
+
+            <div class="interest">
+
+                <div class="interest-icon">💻</div>
+
+                <h3>Technology</h3>
+
+                <p>
+                    Exploring new technologies and developing
+                    useful technical skills.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CURRENTLY LEARNING -->
+
+    <section id="learning">
+
+        <div class="section-heading">
+
+            <h2>Currently <span>Learning</span></h2>
+
+            <p>
+                Building my fundamentals one step at a time.
+            </p>
+
+        </div>
+
+        <div class="learning">
+
+            <div class="learning-item">
+
+                <h3>🔐 Cybersecurity Fundamentals</h3>
+
+                <p>
+                    Developing an understanding of cybersecurity
+                    concepts and security principles.
+                </p>
+
+                <div class="learning-bar">
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="learning-item">
+
+                <h3>🌐 Computer Networking</h3>
+
+                <p>
+                    Learning the fundamentals of networks,
+                    protocols and communication.
+                </p>
+
+                <div class="learning-bar">
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="learning-item">
+
+                <h3>💻 Programming</h3>
+
+                <p>
+                    Building programming fundamentals that can
+                    support my future cybersecurity work.
+                </p>
+
+                <div class="learning-bar">
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="learning-item">
+
+                <h3>🐧 Linux & Command Line</h3>
+
+                <p>
+                    Starting to explore Linux environments and
+                    command-line concepts.
+                </p>
+
+                <div class="learning-bar">
+                    <span></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- JOURNEY -->
+
+    <section>
+
+        <div class="journey">
+
+            <h3>🚀 My Cybersecurity Journey</h3>
+
+            <p>
+                I'm only at the beginning of my journey. Instead of
+                claiming skills I haven't mastered yet, I'm focused
+                on learning the fundamentals, gaining practical
+                experience and building real projects as I progress
+                through college.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- GITHUB -->
+
+    <section id="github">
+
+        <div class="section-heading">
+
+            <h2>My <span>GitHub</span></h2>
+
+            <p>
+                Follow my progress as I learn and build.
+            </p>
+
+        </div>
+
+        <div class="github-card">
+
+            <h3>GitHub Profile</h3>
+
+            <div class="username">
+                @Dhanushari9313
+            </div>
+
+            <p>
+                My repositories and future cybersecurity projects
+                will be available here as I continue learning.
+            </p>
+
+            <a href="https://github.com/Dhanushari9313"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn primary">
+                Visit My GitHub
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 <span>Dhanushari V</span>
+        • First Year B.E. Cybersecurity Student
+
+    </footer>
+
 </body>
 </html>
