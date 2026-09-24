@@ -1,865 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Dhanushari V - First Year B.E. Cybersecurity Student at JNN Institute of Technology.">
-
-    <meta name="author" content="Dhanushari V">
-
-    <title>Dhanushari V | Cybersecurity Student</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --bg: #05070d;
-            --card: #0b101a;
-            --card2: #101722;
-            --text: #f5f7fa;
-            --muted: #9ca3af;
-            --green: #00ff9c;
-            --border: rgba(0, 255, 156, 0.18);
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        /* NAVIGATION */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(5, 7, 13, 0.88);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1150px;
-            margin: auto;
-            padding: 17px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: var(--green);
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--green);
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 70px;
-
-            background:
-                radial-gradient(
-                    circle at 50% 35%,
-                    rgba(0, 255, 156, 0.13),
-                    transparent 35%
-                );
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 7px 16px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            color: var(--green);
-            background: rgba(0, 255, 156, 0.05);
-            font-size: 13px;
-        }
-
-        .hero h1 {
-            font-size: clamp(48px, 9vw, 85px);
-            line-height: 1.1;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: var(--green);
-        }
-
-        .hero h2 {
-            color: var(--muted);
-            font-size: clamp(20px, 4vw, 30px);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: auto;
-            color: var(--muted);
-            font-size: 17px;
-        }
-
-        .buttons {
-            margin-top: 32px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 13px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .primary {
-            background: var(--green);
-            color: #03110b;
-        }
-
-        .primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 255, 156, 0.3);
-        }
-
-        .secondary {
-            border: 1px solid #303846;
-            color: white;
-        }
-
-        .secondary:hover {
-            border-color: var(--green);
-            color: var(--green);
-        }
-
-        /* COMMON */
-
-        section {
-            max-width: 1150px;
-            margin: auto;
-            padding: 100px 25px;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-heading h2 {
-            font-size: 38px;
-            margin-bottom: 8px;
-        }
-
-        .section-heading h2 span {
-            color: var(--green);
-        }
-
-        .section-heading p {
-            color: var(--muted);
-        }
-
-        /* ABOUT */
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid #1c2633;
-            border-radius: 16px;
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--border);
-        }
-
-        .card h3 {
-            font-size: 23px;
-            margin-bottom: 15px;
-            color: var(--green);
-        }
-
-        .card p {
-            color: var(--muted);
-        }
-
-        /* TERMINAL */
-
-        .terminal {
-            background: #020408;
-            border: 1px solid #1c2633;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .terminal-top {
-            padding: 12px 18px;
-            border-bottom: 1px solid #1c2633;
-            color: #6b7280;
-            font-size: 13px;
-        }
-
-        .terminal-body {
-            padding: 25px;
-            font-family: monospace;
-            font-size: 14px;
-        }
-
-        .terminal-body p {
-            margin: 10px 0;
-            color: #d1d5db;
-        }
-
-        .prompt {
-            color: var(--green);
-        }
-
-        /* EDUCATION */
-
-        .education {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        .education-card {
-            position: relative;
-            padding: 35px;
-            background: linear-gradient(
-                135deg,
-                var(--card),
-                var(--card2)
-            );
-            border: 1px solid #1c2633;
-            border-radius: 16px;
-        }
-
-        .education-card .year {
-            color: var(--green);
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .education-card h3 {
-            font-size: 27px;
-            margin-bottom: 8px;
-        }
-
-        .education-card h4 {
-            color: #d1d5db;
-            font-size: 18px;
-            font-weight: normal;
-            margin-bottom: 12px;
-        }
-
-        .education-card p {
-            color: var(--muted);
-        }
-
-        /* INTERESTS */
-
-        .interest-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .interest {
-            background: var(--card);
-            border: 1px solid #1c2633;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .interest:hover {
-            transform: translateY(-6px);
-            border-color: var(--green);
-        }
-
-        .interest-icon {
-            font-size: 35px;
-            margin-bottom: 15px;
-        }
-
-        .interest h3 {
-            margin-bottom: 8px;
-        }
-
-        .interest p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        /* CURRENTLY LEARNING */
-
-        .learning {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .learning-item {
-            padding: 25px;
-            background: var(--card);
-            border: 1px solid #1c2633;
-            border-radius: 14px;
-        }
-
-        .learning-item h3 {
-            margin-bottom: 8px;
-        }
-
-        .learning-item p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .learning-bar {
-            height: 5px;
-            margin-top: 18px;
-            background: #1c2633;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .learning-bar span {
-            display: block;
-            width: 25%;
-            height: 100%;
-            background: var(--green);
-        }
-
-        /* JOURNEY */
-
-        .journey {
-            text-align: center;
-            padding: 45px 25px;
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(0, 255, 156, 0.08),
-                    transparent 60%
-                ),
-                var(--card);
-            border: 1px solid #1c2633;
-            border-radius: 18px;
-        }
-
-        .journey h3 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .journey p {
-            max-width: 700px;
-            margin: auto;
-            color: var(--muted);
-        }
-
-        /* GITHUB */
-
-        .github {
-            text-align: center;
-        }
-
-        .github-card {
-            padding: 45px 25px;
-            background: var(--card);
-            border: 1px solid #1c2633;
-            border-radius: 18px;
-        }
-
-        .github-card .username {
-            color: var(--green);
-            font-family: monospace;
-            font-size: 22px;
-            margin: 10px 0 20px;
-        }
-
-        .github-card p {
-            color: var(--muted);
-            margin-bottom: 25px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            padding: 35px 20px;
-            text-align: center;
-            border-top: 1px solid #18202c;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        footer span {
-            color: var(--green);
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .about-grid,
-            .learning {
-                grid-template-columns: 1fr;
-            }
-
-            .interest-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            section {
-                padding: 75px 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhanushari V | Cybersecurity Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1220; --bg-alt:#101a2e; --panel:#0e1729;
+    --line:#213050; --text:#e7ecf5; --muted:#8b97ac;
+    --accent:#35d0c0; --accent2:#f2b84b;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif; line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-attachment:fixed;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:600;}
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* nav */
+  nav{position:sticky; top:0; z-index:10; backdrop-filter:blur(8px); background:rgba(11,18,32,.85); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
+  .brand{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:15px;}
+  .navlinks{display:flex; gap:28px;}
+  .navlinks a{color:var(--muted); font-size:14px; transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+
+  /* hero */
+  .hero{padding:120px 0 90px; border-bottom:1px solid var(--line);}
+  .tag{font-family:'JetBrains Mono',monospace; color:var(--accent2); font-size:13px; margin-bottom:18px; display:flex; align-items:center; gap:8px;}
+  .tag::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--accent2); box-shadow:0 0 8px var(--accent2);}
+  .hero h1{font-size:56px; line-height:1.05; margin-bottom:6px;}
+  .hero h2{font-size:22px; color:var(--muted); font-weight:400; margin-bottom:28px;}
+  .term{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px;
+    padding:20px 22px; max-width:500px; margin-bottom:34px;
+    font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--muted);
+    position:relative;
+  }
+  .term .cursor{display:inline-block; width:8px; height:16px; background:var(--accent); animation:blink 1s step-end infinite; vertical-align:-3px;}
+  @keyframes blink{50%{opacity:0;}}
+  .term span.k{color:var(--accent);}
+  .btnrow{display:flex; gap:14px;}
+  .btn{padding:12px 22px; border-radius:3px; font-size:14px; font-weight:500; border:1px solid var(--line);}
+  .btn.primary{background:var(--accent); color:var(--bg); border:none;}
+  .btn.ghost{color:var(--text);}
+  .btn:hover{opacity:.85;}
+
+  /* sections */
+  section{padding:80px 0; border-bottom:1px solid var(--line);}
+  .eyebrow{color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:13px; margin-bottom:10px;}
+  section h2.title{font-size:32px; margin-bottom:8px;}
+  section .sub{color:var(--muted); margin-bottom:40px; max-width:60ch;}
+
+  .panel{
+    border:1px solid var(--line); background:var(--panel); border-radius:4px;
+    padding:26px; position:relative;
+  }
+  .panel::before,.panel::after{content:''; position:absolute; width:10px; height:10px; border:1px solid var(--accent); opacity:.6;}
+  .panel::before{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .panel::after{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:32px;}
+  .about-grid p{color:var(--muted); margin-bottom:14px;}
+  .about-grid .panel div{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .about-grid .panel div:last-child{border-bottom:none;}
+  .about-grid .panel .k{color:var(--accent2);}
+
+  .edu-panel{display:flex; gap:22px; align-items:flex-start;}
+  .edu-badge{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent2); border:1px solid var(--accent2); padding:3px 9px; border-radius:20px; white-space:nowrap;}
+  .edu-panel h3{font-size:20px; margin:6px 0 4px;}
+  .edu-panel .role{color:var(--accent); font-size:14px; margin-bottom:10px;}
+  .edu-panel p{color:var(--muted);}
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .grid3 .panel .ic{font-size:26px; margin-bottom:14px;}
+  .grid3 .panel h3{font-size:18px; margin-bottom:8px;}
+  .grid3 .panel p{color:var(--muted); font-size:14px;}
+
+  .learn-list{display:flex; flex-direction:column; gap:1px; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .learn-item{display:flex; gap:18px; padding:18px 22px; background:var(--panel); align-items:baseline;}
+  .learn-item .ic{color:var(--accent); font-size:15px;}
+  .learn-item h3{font-size:16px; margin-bottom:3px;}
+  .learn-item p{color:var(--muted); font-size:14px;}
+
+  .journey p{color:var(--muted); max-width:64ch;}
+
+  footer{padding:36px 0; text-align:center; color:var(--muted); font-size:13px; font-family:'JetBrains Mono',monospace;}
+  footer a{color:var(--accent);}
+
+  @media(max-width:720px){
+    .navlinks{display:none;}
+    .hero{padding:80px 0 60px;}
+    .hero h1{font-size:38px;}
+    .about-grid{grid-template-columns:1fr;}
+    .grid3{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .term .cursor{animation:none;}
+  }
+</style>
 </head>
-
 <body>
 
-    <!-- NAVIGATION -->
-
-    <nav>
-        <div class="nav-container">
-
-            <div class="logo">Dhanushari.exe</div>
-
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#interests">Interests</a></li>
-                <li><a href="#learning">Learning</a></li>
-                <li><a href="#github">GitHub</a></li>
-            </ul>
-
-        </div>
-    </nav>
-
-
-    <!-- HERO -->
-
-    <header class="hero" id="home">
-
-        <div class="hero-content">
-
-            <div class="status">
-                ● FIRST YEAR • CYBERSECURITY STUDENT
-            </div>
-
-            <h1>
-                Dhanushari <span>V</span>
-            </h1>
-
-            <h2>
-                B.E. Cybersecurity Student
-            </h2>
-
-            <p>
-                A first-year cybersecurity student at JNN Institute
-                of Technology, interested in learning new technical
-                skills and exploring the world of cybersecurity.
-            </p>
-
-            <div class="buttons">
-
-                <a href="#about" class="btn primary">
-                    Explore My Journey
-                </a>
-
-                <a href="https://github.com/Dhanushari9313"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn secondary">
-                    View GitHub
-                </a>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-        <div class="section-heading">
-            <h2>About <span>Me</span></h2>
-            <p>My journey is just getting started.</p>
-        </div>
-
-        <div class="about-grid">
-
-            <div class="card">
-
-                <h3>Who I Am</h3>
-
-                <p>
-                    I'm Dhanushari V, a first-year B.E. Cybersecurity
-                    student at JNN Institute of Technology.
-                </p>
-
-                <br>
-
-                <p>
-                    I'm currently building my foundation in technology
-                    and cybersecurity. I'm interested in learning new
-                    skills, understanding how technology works and
-                    improving myself step by step.
-                </p>
-
-            </div>
-
-            <div class="terminal">
-
-                <div class="terminal-top">
-                    dhanushari@portfolio: ~
-                </div>
-
-                <div class="terminal-body">
-
-                    <p>
-                        <span class="prompt">$ whoami</span>
-                    </p>
-
-                    <p>Dhanushari V</p>
-
-                    <p>
-                        <span class="prompt">$ education</span>
-                    </p>
-
-                    <p>B.E. Cybersecurity</p>
-
-                    <p>
-                        <span class="prompt">$ year</span>
-                    </p>
-
-                    <p>1st Year</p>
-
-                    <p>
-                        <span class="prompt">$ goal</span>
-                    </p>
-
-                    <p>Learn • Build • Improve</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- EDUCATION -->
-
-    <section id="education">
-
-        <div class="section-heading">
-
-            <h2>My <span>Education</span></h2>
-
-            <p>
-                The beginning of my technical journey.
-            </p>
-
-        </div>
-
-        <div class="education">
-
-            <div class="education-card">
-
-                <div class="year">
-                    CURRENT • 1ST YEAR
-                </div>
-
-                <h3>JNN Institute of Technology</h3>
-
-                <h4>B.E. Cybersecurity</h4>
-
-                <p>
-                    Currently pursuing my first year of B.E.
-                    in Cybersecurity and developing a strong
-                    foundation for my future technical career.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- INTERESTS -->
-
-    <section id="interests">
-
-        <div class="section-heading">
-
-            <h2>My <span>Interests</span></h2>
-
-            <p>
-                Areas I want to explore during my journey.
-            </p>
-
-        </div>
-
-        <div class="interest-grid">
-
-            <div class="interest">
-
-                <div class="interest-icon">🛡️</div>
-
-                <h3>Cybersecurity</h3>
-
-                <p>
-                    Learning the fundamentals of protecting
-                    digital systems and information.
-                </p>
-
-            </div>
-
-            <div class="interest">
-
-                <div class="interest-icon">🌐</div>
-
-                <h3>Networking</h3>
-
-                <p>
-                    Interested in understanding networks,
-                    communication and network security.
-                </p>
-
-            </div>
-
-            <div class="interest">
-
-                <div class="interest-icon">💻</div>
-
-                <h3>Technology</h3>
-
-                <p>
-                    Exploring new technologies and developing
-                    useful technical skills.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CURRENTLY LEARNING -->
-
-    <section id="learning">
-
-        <div class="section-heading">
-
-            <h2>Currently <span>Learning</span></h2>
-
-            <p>
-                Building my fundamentals one step at a time.
-            </p>
-
-        </div>
-
-        <div class="learning">
-
-            <div class="learning-item">
-
-                <h3>🔐 Cybersecurity Fundamentals</h3>
-
-                <p>
-                    Developing an understanding of cybersecurity
-                    concepts and security principles.
-                </p>
-
-                <div class="learning-bar">
-                    <span></span>
-                </div>
-
-            </div>
-
-            <div class="learning-item">
-
-                <h3>🌐 Computer Networking</h3>
-
-                <p>
-                    Learning the fundamentals of networks,
-                    protocols and communication.
-                </p>
-
-                <div class="learning-bar">
-                    <span></span>
-                </div>
-
-            </div>
-
-            <div class="learning-item">
-
-                <h3>💻 Programming</h3>
-
-                <p>
-                    Building programming fundamentals that can
-                    support my future cybersecurity work.
-                </p>
-
-                <div class="learning-bar">
-                    <span></span>
-                </div>
-
-            </div>
-
-            <div class="learning-item">
-
-                <h3>🐧 Linux & Command Line</h3>
-
-                <p>
-                    Starting to explore Linux environments and
-                    command-line concepts.
-                </p>
-
-                <div class="learning-bar">
-                    <span></span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- JOURNEY -->
-
-    <section>
-
-        <div class="journey">
-
-            <h3>🚀 My Cybersecurity Journey</h3>
-
-            <p>
-                I'm only at the beginning of my journey. Instead of
-                claiming skills I haven't mastered yet, I'm focused
-                on learning the fundamentals, gaining practical
-                experience and building real projects as I progress
-                through college.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- GITHUB -->
-
-    <section id="github">
-
-        <div class="section-heading">
-
-            <h2>My <span>GitHub</span></h2>
-
-            <p>
-                Follow my progress as I learn and build.
-            </p>
-
-        </div>
-
-        <div class="github-card">
-
-            <h3>GitHub Profile</h3>
-
-            <div class="username">
-                @Dhanushari9313
-            </div>
-
-            <p>
-                My repositories and future cybersecurity projects
-                will be available here as I continue learning.
-            </p>
-
-            <a href="https://github.com/Dhanushari9313"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn primary">
-                Visit My GitHub
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        © 2026 <span>Dhanushari V</span>
-        • First Year B.E. Cybersecurity Student
-
-    </footer>
-
-</body>
-</html>
+<nav>
+  <div class="wrap">
+    <div class="brand">dhanushari<span style="color:var(--accent2)">.exe</span></di
