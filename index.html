@@ -17,12 +17,8 @@
   body{
     background:var(--bg); color:var(--text);
     font-family:'Inter',sans-serif; line-height:1.6;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:48px 48px;
-    background-attachment:fixed;
   }
+  #matrix{position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:.5;}
   h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:600;}
   a{color:inherit; text-decoration:none;}
   .mono{font-family:'JetBrains Mono',monospace;}
@@ -33,29 +29,47 @@
   nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
   .brand{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:15px;}
   .navlinks{display:flex; gap:28px;}
-  .navlinks a{color:var(--muted); font-size:14px; transition:color .2s;}
+  .navlinks a{color:var(--muted); font-size:14px; transition:color .2s; position:relative; padding-bottom:4px;}
+  .navlinks a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--accent); box-shadow:0 0 6px var(--accent); transition:width .25s;}
   .navlinks a:hover{color:var(--text);}
+  .navlinks a:hover::after{width:100%;}
 
   /* hero */
-  .hero{padding:120px 0 90px; border-bottom:1px solid var(--line);}
+  .hero{padding:120px 0 90px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;}
+  .hero::before{content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:700px; height:700px; background:radial-gradient(circle, rgba(53,208,192,.15), transparent 70%); pointer-events:none;}
+  .hero .wrap{position:relative;}
   .tag{font-family:'JetBrains Mono',monospace; color:var(--accent2); font-size:13px; margin-bottom:18px; display:flex; align-items:center; gap:8px;}
-  .tag::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--accent2); box-shadow:0 0 8px var(--accent2);}
-  .hero h1{font-size:56px; line-height:1.05; margin-bottom:6px;}
+  .tag::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--accent2); box-shadow:0 0 8px var(--accent2); animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 6px var(--accent2);} 50%{box-shadow:0 0 14px var(--accent2);}}
+  .hero h1{
+    font-size:60px; line-height:1.05; margin-bottom:6px;
+    background:linear-gradient(100deg, var(--text) 30%, var(--accent) 70%, var(--accent2) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
   .hero h2{font-size:22px; color:var(--muted); font-weight:400; margin-bottom:28px;}
   .term{
     background:var(--panel); border:1px solid var(--line); border-radius:4px;
     padding:20px 22px; max-width:500px; margin-bottom:34px;
     font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--muted);
-    position:relative;
+    position:relative; overflow:hidden;
+    box-shadow:0 0 30px rgba(53,208,192,.08);
   }
+  .term::after{
+    content:''; position:absolute; top:0; left:-100%; width:60%; height:100%;
+    background:linear-gradient(90deg, transparent, rgba(53,208,192,.08), transparent);
+    animation:scan 4s ease-in-out infinite;
+  }
+  @keyframes scan{0%{left:-60%;} 100%{left:120%;}}
   .term .cursor{display:inline-block; width:8px; height:16px; background:var(--accent); animation:blink 1s step-end infinite; vertical-align:-3px;}
   @keyframes blink{50%{opacity:0;}}
   .term span.k{color:var(--accent);}
   .btnrow{display:flex; gap:14px;}
-  .btn{padding:12px 22px; border-radius:3px; font-size:14px; font-weight:500; border:1px solid var(--line);}
+  .btn{padding:12px 22px; border-radius:3px; font-size:14px; font-weight:500; border:1px solid var(--line); transition:box-shadow .25s, transform .25s, opacity .25s;}
   .btn.primary{background:var(--accent); color:var(--bg); border:none;}
   .btn.ghost{color:var(--text);}
-  .btn:hover{opacity:.85;}
+  .btn:hover{opacity:.9; transform:translateY(-2px);}
+  .btn.primary:hover{box-shadow:0 0 22px rgba(53,208,192,.55);}
+  .btn.ghost:hover{border-color:var(--accent); box-shadow:0 0 16px rgba(53,208,192,.2);}
 
   /* sections */
   section{padding:80px 0; border-bottom:1px solid var(--line);}
@@ -65,8 +79,9 @@
 
   .panel{
     border:1px solid var(--line); background:var(--panel); border-radius:4px;
-    padding:26px; position:relative;
+    padding:26px; position:relative; transition:border-color .25s, transform .25s;
   }
+  .panel:hover{border-color:var(--accent); transform:translateY(-2px);}
   .panel::before,.panel::after{content:''; position:absolute; width:10px; height:10px; border:1px solid var(--accent); opacity:.6;}
   .panel::before{top:-1px; left:-1px; border-right:none; border-bottom:none;}
   .panel::after{bottom:-1px; right:-1px; border-left:none; border-top:none;}
@@ -108,11 +123,170 @@
   }
   @media (prefers-reduced-motion:reduce){
     .term .cursor{animation:none;}
+    .term::after{animation:none;}
+    .tag::before{animation:none;}
   }
 </style>
 </head>
 <body>
+<canvas id="matrix"></canvas>
 
 <nav>
   <div class="wrap">
-    <div class="brand">dhanushari<span style="color:var(--accent2)">.exe</span></di
+    <div class="brand">dhanushari<span style="color:var(--accent2)">.exe</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#interests">Interests</a>
+      <a href="#learning">Learning</a>
+      <a href="#github">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="tag">FIRST YEAR · CYBERSECURITY STUDENT</div>
+    <h1>Dhanushari V</h1>
+    <h2>B.E. Cybersecurity Student</h2>
+    <div class="term">
+      <span class="k">$</span> whoami<br>
+      Dhanushari V — B.E. Cybersecurity, 1st Year<br>
+      <span class="k">$</span> goal<br>
+      Learn · Build · Improve<span class="cursor"></span>
+    </div>
+    <div class="btnrow">
+      <a class="btn primary" href="#about">Explore My Journey</a>
+      <a class="btn ghost" href="https://github.com/Dhanushari9313" target="_blank">View GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">01 — about</div>
+    <h2 class="title">Who I Am</h2>
+    <p class="sub">My journey is just getting started.</p>
+    <div class="about-grid">
+      <div>
+        <p>I'm Dhanushari V, a first-year B.E. Cybersecurity student at JNN Institute of Technology.</p>
+        <p>I'm currently building my foundation in technology and cybersecurity — learning new skills, understanding how systems work, and improving step by step.</p>
+      </div>
+      <div class="panel">
+        <div><span class="k">education</span><span>B.E. Cybersecurity</span></div>
+        <div><span class="k">year</span><span>1st Year</span></div>
+        <div><span class="k">batch</span><span>2026 – 2030</span></div>
+        <div><span class="k">focus</span><span>Security · Networks</span></div>
+        <div><span class="k">status</span><span>Learning daily</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">02 — education</div>
+    <h2 class="title">My Education</h2>
+    <p class="sub">The beginning of my technical journey.</p>
+    <div class="panel edu-panel">
+      <span class="edu-badge">CURRENT</span>
+      <div>
+        <h3>JNN Institute of Technology</h3>
+        <div class="role">B.E. Cybersecurity</div>
+        <p>Currently pursuing my first year of B.E. in Cybersecurity and developing a strong foundation for my future technical career.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="wrap">
+    <div class="eyebrow">03 — interests</div>
+    <h2 class="title">My Interests</h2>
+    <p class="sub">Areas I want to explore during my journey.</p>
+    <div class="grid3">
+      <div class="panel"><div class="ic">🛡️</div><h3>Cybersecurity</h3><p>Learning the fundamentals of protecting digital systems and information.</p></div>
+      <div class="panel"><div class="ic">🌐</div><h3>Networking</h3><p>Understanding networks, communication and network security.</p></div>
+      <div class="panel"><div class="ic">💻</div><h3>Technology</h3><p>Exploring new technologies and developing useful technical skills.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="learning">
+  <div class="wrap">
+    <div class="eyebrow">04 — learning</div>
+    <h2 class="title">Currently Learning</h2>
+    <p class="sub">Building my fundamentals one step at a time.</p>
+    <div class="learn-list">
+      <div class="learn-item"><span class="ic">🔐</span><div><h3>Cybersecurity Fundamentals</h3><p>Developing an understanding of core concepts and security principles.</p></div></div>
+      <div class="learn-item"><span class="ic">🌐</span><div><h3>Computer Networking</h3><p>Learning the fundamentals of networks, protocols and communication.</p></div></div>
+      <div class="learn-item"><span class="ic">💻</span><div><h3>Programming</h3><p>Building fundamentals that support my future cybersecurity work.</p></div></div>
+      <div class="learn-item"><span class="ic">🐧</span><div><h3>Linux &amp; Command Line</h3><p>Starting to explore Linux environments and command-line concepts.</p></div></div>
+    </div>
+    <br>
+    <div class="panel journey">
+      <h3 style="margin-bottom:10px;">🚀 My Cybersecurity Journey</h3>
+      <p>I'm only at the beginning of my journey. Instead of claiming skills I haven't mastered yet, I'm focused on learning the fundamentals, gaining practical experience and building real projects as I progress through college.</p>
+    </div>
+  </div>
+</section>
+
+<section id="github" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="eyebrow">05 — github</div>
+    <h2 class="title">My GitHub</h2>
+    <p class="sub">Follow my progress as I learn and build.</p>
+    <div class="panel" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h3>@Dhanushari9313</h3>
+        <p style="color:var(--muted); margin-top:6px;">My repositories and future cybersecurity projects will be available here as I continue learning.</p>
+      </div>
+      <a class="btn primary" href="https://github.com/Dhanushari9313" target="_blank">Visit My GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Dhanushari V <span style="color:var(--muted)">·</span> First Year B.E. Cybersecurity Student</footer>
+
+<script>
+(function(){
+  var canvas = document.getElementById('matrix');
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var chars = 'アイウエオカキクケコサシスセソ01アイウエオ$#&@%';
+  var fontSize = 15, drops = [], w, h;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    var cols = Math.floor(w / fontSize);
+    drops = new Array(cols).fill(1);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw(){
+    ctx.fillStyle = 'rgba(11,18,32,0.08)';
+    ctx.fillRect(0,0,w,h);
+    ctx.font = fontSize + 'px monospace';
+    for(var i=0;i<drops.length;i++){
+      var text = chars[Math.floor(Math.random()*chars.length)];
+      var grad = ctx.createLinearGradient(0, drops[i]*fontSize - fontSize*6, 0, drops[i]*fontSize);
+      grad.addColorStop(0, 'rgba(53,208,192,0)');
+      grad.addColorStop(1, 'rgba(53,208,192,0.9)');
+      ctx.fillStyle = grad;
+      ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+      if(drops[i]*fontSize > h && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  if(!reduced){
+    setInterval(draw, 45);
+  } else {
+    ctx.fillStyle = 'rgba(11,18,32,1)';
+    ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+  }
+})();
+</script>
+</body>
+</html>
